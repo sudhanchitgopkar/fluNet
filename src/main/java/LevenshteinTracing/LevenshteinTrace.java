@@ -121,7 +121,7 @@ public class LevenshteinTrace {
             //checks for insertion
 			if (minim != Integer.MAX_VALUE && minim == top) {
 				targetLocation[0] -= 1;
-				path[targetLocation[0]][targetLocation[1]] = "\\";
+				path[targetLocation[0]][targetLocation[1]] = "-";
 				System.out.println("INSERTION");
 				System.out.println();
 			} //top
@@ -130,7 +130,7 @@ public class LevenshteinTrace {
 			if (minim != Integer.MAX_VALUE && minim == diag) {
 				targetLocation[0] -= 1;
 				targetLocation[1] -= 1;
-				path[targetLocation[0]][targetLocation[1]] = "-";
+				path[targetLocation[0]][targetLocation[1]] = "\\";
 				System.out.println("SUBSTITUTION");
 				System.out.println();
 			} //top
@@ -138,7 +138,7 @@ public class LevenshteinTrace {
             //checks for deletion
 			if (minim != Integer.MAX_VALUE && minim == left) {
 				targetLocation[1] -= 1;
-				path[targetLocation[0]][targetLocation[1]] = "/";
+				path[targetLocation[0]][targetLocation[1]] = "-";
 				System.out.println("DELETION");
 				System.out.println();
 			} //top
