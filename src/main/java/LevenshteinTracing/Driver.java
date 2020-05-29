@@ -14,9 +14,13 @@ public class Driver {
 	int deletion = 0;
 
 	public static void main(String[] args) {
+
+        String rnaSample1 = "CAAACTACCCTGGGTTGCCAT";
+        String rnaSameple2 = "ATGGCAACCCAGGGTAGTTTG";
+
 		LevenshteinTrace d = new LevenshteinTrace();
-		d.computeLevenshteinDistance("CAAACTACCCTGGGTTGCCAT", "ATGGCAACCCAGGGTAGTTTG");
-		d.pathGen("CAAACTACCCTGGGTTGCCAT","ATGGCAACCCAGGGTAGTTTG");
+		d.computeLevenshteinDistance(rnaSample1,rnaSample2);
+		d.pathGen(rnaSample1,rnaSample2);
 	} //main
 
 } //Levenshtein Analysis
