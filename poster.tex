@@ -1,0 +1,182 @@
+% Created by Sudhan Chitgopkar
+% https:/sudhanchitgopkar.com
+
+\documentclass[final]{beamer}
+
+% ====================
+% Packages
+% ====================
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[size=custom,width=120,height=72,scale=1.0]{beamerposter}
+\usetheme{gemini}
+\usecolortheme{gemini}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+% ====================
+% Lengths
+% ====================
+
+% If you have N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.025\paperwidth}
+\setlength{\colwidth}{0.3\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Title
+% ====================
+
+\title{Deriving a Mathematical Model for Influenza Strain Prediction}
+
+\author{Sudhan Chitgopkar \and Dr. Gerasim Iliev}
+
+\institute[shortinst]{University of Georgia, Dept. of Mathematics}
+
+% ====================
+% Body
+% ====================
+
+\begin{document}
+
+\begin{frame}[t]
+\begin{columns}[t]
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+  \begin{alertblock}{On A Multi-Stage Mathematical Model}
+
+    This study investigates the potential of a two-stage mathematical model to predict antigenic shifts in the Influenza Virus. The primary stage consists of a Bayesian Network that will be trained to understand the nature of the Influenza Virus and how each strain may mutate. The secondary stage, primarily researched here, seeks to create a means by which to effectively remove erroneous output from the Bayesian Network. 
+
+  \end{alertblock}
+
+  \begin{block}{Initial String Parsing}
+  
+    It is necessary to begin by creating a means by which to parse virus data into more comprehensible units for analysis. Data strings are tokenized at a character-level to identify antigenic drifts \& shifts.
+    \vspace{0.2 in}
+    \begin{center}
+    \includegraphics[width = \textwidth]{StringParsing.pdf}
+    \end{center}
+
+    \begin{itemize}
+      \item Naïve parsing, as done here, produces a data set viable for more advanced analysis
+      \item One such application, explored here, is using string parsing for a means by which to understand the Levenshtein’s Distance of each year’s strain with its predecessor
+      \item Interestingly, parsing indicates that \textbf{strain discrepancies occur towards the beginning of their RNA sequences.}
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Bayesian Networks}
+
+    Bayesian Networks, which make up the first part of this model, represent the combination of probability theory and graph theory. They function well dealing with varying levels of uncertainty and complexity- both of which are largely present in this model. 
+    \vspace{0.2 in}
+    \includegraphics[width = \textwidth]{Bayes.pdf}
+
+    Accordingly, Bayesian Networks are preferred for their ability to
+    \begin{itemize}
+        \item ability to gracefully \textbf{handle low-quantity data sets}
+        \item accurate uncertainty reporting
+        \item ability to \textbf{generate synthetic data} for retraining
+    \end{itemize}
+    
+  \end{block}
+
+\end{column}
+
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+  \begin{block}{Walk Models}
+
+    To better visualize RNA strands, walk models can be implemented for various Influenza Proteins.
+
+    \heading{The HA Protein}\\
+    \begin{itemize}
+      \item This protein is responsible for binding the virus to the cell it is currently infecting. \textbf{This is critical to creating infection}
+      \item Walks tend to be in-volatile with areas of high nucleotide diversity
+      \item \textbf{Overlap generally occurs in high diversity areas}
+    \end{itemize}
+    \vspace{0.2 in}
+    \includegraphics[width = \textwidth]{NA.pdf}
+
+    \heading{The NA Protein}\\
+    \begin{itemize}
+      \item This protein is responsible for removing bonds and releasing virus particles. \textbf{This is critical to spreading infection}
+      \item Walks have a strong North-East drift, indicating low nucleotide diversity throughout
+      \item \textbf{Overlap occurs more often in moderately-diverse areas}
+    \end{itemize}
+    \vspace{0.2 in}
+    \includegraphics[width = \textwidth]{HA.pdf}
+    
+    \heading{Synthetic Strands}\\
+    \begin{itemize}
+      \item Synthetic Strands are generated to deal with low amounts of data-input
+      \item \textbf{Perlin noise can be used for initial synthetic strand generation}
+    \end{itemize}
+    \vspace{0.2 in}
+    \includegraphics[width = \textwidth]{Synthetic.pdf}
+
+  \end{block}
+  
+\end{column}
+
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+  \begin{block}{Algorithm Analysis}
+
+    Two seperate algorithms are analyzed based on the walk-model data output: [1] Levenshtein’s Distance and [2] The Needleman-Wunsch algorithm. 
+
+   
+
+    \heading{Needleman-Wunsch}
+
+    \begin{itemize}
+      \item Primarily used for Global Sequence Alignment with DNA
+      \item Assigns cost values to particular adjustments necessary to strings.
+    \end{itemize}
+
+    \heading{Levenshtein's Distance}
+
+    \begin{itemize}
+      \item Highly generalized string comparison method
+      \item Standardizes cost for adjustments, seeking to find the raw difference between strings
+    \end{itemize}
+    \vspace{0.2 in}
+    \includegraphics[width = \textwidth]{AlgComparison.pdf}
+    
+    While helpful in their ability to trace-back individual steps and costs between two strings, comparison of the Levenshtein's Distance and Needleman-Wunsch algorithms are difficult due to a same general method of computation between strings of the same length.
+     
+    \end{block}
+    
+    \begin{block}{Visualizing Algorithm Differences}
+    
+    To better visualize the differences between the Levenshtein's Distance and Needleman-Wunsch algorithms, walk models may once again be used. 
+    \vspace{0.2 in}
+    \begin{center}
+    \includegraphics[width = \textwidth]{AlgWalks.pdf}
+    \end{center}
+    
+    Such walks present us with a significant amount of information regarding applicability of each algorithm during different preiods of Bayesian Network retraining. Specifically,
+    \begin{itemize}
+        \item Due to lower complications and the ability to focus on smaller segments, Levenshtein's Distance Algorithm is useful for initial iterations
+        \item As the model becomes more adaptable, the Needleman-Wunsch algorithm can provide higher accuracy, despite the higher computational power it may need with longer strings
+    \end{itemize}
+
+  \end{block}
+\end{column}
+
+\separatorcolumn
+\end{columns}
+\end{frame}
+
+\end{document}
