@@ -19,6 +19,30 @@ Two algorithms are chosen for analysis based on the results of the aforedescribe
 ### Algorithm Visualization
 Dyck Paths were used for a visualization of Algorithm performance in RNA sequence alignment with a focus on how algorithm efficiency varied on local and global RNA segments. An interesting, inverse relationship was found regarding complications and accuracy here that may indicate significant differences on optimal algorithm usage for Bayesian output checking.
 
+## Featured Segments
+### Backtracing Optimal Levenshtein's Distance Moves 
+		while ((targetLocation[0] != 0) && (targetLocation[1] != 0)) {
+			//finds top value
+			if(checkNull(targetLocation[0] - 1, targetLocation[1])) {
+				top = distance[targetLocation[0] - 1][targetLocation[1]];
+			} else {
+				top = Integer.MAX_VALUE;
+			}
+			//finds diagonal value
+			if(checkNull(targetLocation[0] - 1, targetLocation[1] - 1)) {
+				diag = distance[targetLocation[0] - 1][targetLocation[1] - 1];
+			} else {
+				diag = Integer.MAX_VALUE;
+			}
+			//finds left value
+			if(checkNull(targetLocation[0], targetLocation[1] - 1)) {
+				left = distance[targetLocation[0]][targetLocation[1] - 1];
+			} else {
+				left = Integer.MAX_VALUE;
+			}
+      } //while
+      `
+
 ## Contact & Permissions
 To learn more about this project, [sudhan chitgopkar](https://sudhanchitgopkar.com) is reachable at sudhanchitgopkar@uga.edu.
 All diagrams, figures, and the Gemini TeX Poster template are held under an MIT License. Original figures are available upon request.
