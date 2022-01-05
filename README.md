@@ -42,7 +42,7 @@ Dyck Paths were used for a visualization of Algorithm performance in RNA sequenc
 				left = Integer.MAX_VALUE;
 			
       		} //while
-
+```
 ## Contact & Permissions
 To learn more about this project, [sudhan chitgopkar](https://sudhanchitgopkar.com) is reachable at sudhanchitgopkar@uga.edu.
 All diagrams, figures, and the Gemini TeX Poster template are held under an MIT License. Original figures and code are available upon request.
