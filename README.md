@@ -21,27 +21,28 @@ Dyck Paths were used for a visualization of Algorithm performance in RNA sequenc
 
 ## Featured Segments
 ### Backtracing Optimal Levenshtein's Distance Moves 
+```java
 		while ((targetLocation[0] != 0) && (targetLocation[1] != 0)) {
 			//finds top value
-			if(checkNull(targetLocation[0] - 1, targetLocation[1])) {
+			if(checkNull(targetLocation[0] - 1, targetLocation[1])) 
 				top = distance[targetLocation[0] - 1][targetLocation[1]];
-			} else {
+			else 
 				top = Integer.MAX_VALUE;
-			}
+			
 			//finds diagonal value
-			if(checkNull(targetLocation[0] - 1, targetLocation[1] - 1)) {
+			if(checkNull(targetLocation[0] - 1, targetLocation[1] - 1)) 
 				diag = distance[targetLocation[0] - 1][targetLocation[1] - 1];
-			} else {
+			else 
 				diag = Integer.MAX_VALUE;
-			}
+			
 			//finds left value
-			if(checkNull(targetLocation[0], targetLocation[1] - 1)) {
+			if(checkNull(targetLocation[0], targetLocation[1] - 1))
 				left = distance[targetLocation[0]][targetLocation[1] - 1];
-			} else {
+			else 
 				left = Integer.MAX_VALUE;
-			}
-      } //while
+			
+      		} //while
 
 ## Contact & Permissions
 To learn more about this project, [sudhan chitgopkar](https://sudhanchitgopkar.com) is reachable at sudhanchitgopkar@uga.edu.
-All diagrams, figures, and the Gemini TeX Poster template are held under an MIT License. Original figures are available upon request.
+All diagrams, figures, and the Gemini TeX Poster template are held under an MIT License. Original figures and code are available upon request.
